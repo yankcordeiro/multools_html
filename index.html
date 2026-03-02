@@ -9,893 +9,309 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    :root {
-      --verde:       #0abf04;
-      --verde-esc:   #078a02;
-      --branco:      #ffffff;
-      --preto:       #000000;
-      --bg:          #080808;
-      --cinza:       #161616;
-      --cinza2:      #1e1e1e;
-      --cinza3:      #252525;
-      --borda:       rgba(255,255,255,0.07);
-      --txt:         rgba(255,255,255,0.85);
-      --txt-fraco:   rgba(255,255,255,0.55);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: "Montserrat", system-ui, sans-serif;
-      background: #080808;
-      color: var(--txt);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── RESET bootstrap que adiciona cor rosa/vermelha ── */
-    a, a:visited, a:hover, a:focus { color: var(--verde); text-decoration: none; }
-    code, kbd, samp, pre {
-      color: var(--verde);
-      background: rgba(10,191,4,0.1);
-      padding: 0.05em 0.3em;
-      border-radius: 4px;
-      font-size: 0.82em;
-    }
-    :focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
-    ::selection { background: rgba(10,191,4,0.3); color: #fff; }
-
-    /* ── HEADER ── */
-    .dg-header {
-      background: linear-gradient(135deg, #111 0%, #060606 100%);
-      border-bottom: 1px solid rgba(10,191,4,0.15);
-      padding: 0.85rem 0;
-    }
-    .dg-logo { max-height: 54px; object-fit: contain; }
-    .dg-header-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--verde);
-      text-shadow: 0 0 14px rgba(10,191,4,0.5);
-    }
-    .dg-header-sub {
-      font-size: 0.78rem;
-      color: var(--txt-fraco);
-      margin-top: 0.1rem;
-    }
-
-    /* ── MAIN ── */
-    .dg-main { flex: 1; padding: 2rem 0 3rem; }
-
-    /* ── CARD ── */
-    .dg-card {
-      background: linear-gradient(160deg, #1a1a1a 0%, #0e0e0e 100%);
-      border-radius: 1rem;
-      border: 1px solid var(--borda);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.85);
-      padding: 1.75rem 1.5rem;
-    }
-    .dg-inner {
-      background: #1c1c1c;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.07);
-      padding: 1rem 1.15rem;
-    }
-
-    /* ── TABS ── */
-    .nav-pills { gap: 0.4rem; flex-wrap: wrap; }
-    .nav-pills .nav-link {
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.84rem;
-      color: var(--txt-fraco);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 0.4rem 1.1rem;
-      background: transparent;
-      transition: background .15s, color .15s, border-color .15s;
-    }
-    .nav-pills .nav-link.active {
-      background: var(--verde);
-      color: #000;
-      border-color: var(--verde);
-      box-shadow: 0 0 18px rgba(10,191,4,0.5);
-    }
-    .nav-pills .nav-link:hover:not(.active) {
-      background: #ffffff;
-      color: var(--verde);
-      border-color: var(--verde);
-    }
-
-    /* ── TÍTULOS ── */
-    .dg-section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .dg-section-desc  { font-size: 0.84rem; color: var(--txt-fraco); margin-bottom: 1rem; }
-
-    /* ── BOTÕES ── */
-    .btn-dg {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 700;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      padding: 0.48rem 1.4rem;
-      border-width: 2px;
-      border-style: solid;
-      cursor: pointer;
-      transition: background .15s, color .15s, border-color .15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    /* verde principal */
-    .btn-dg-verde {
-      background: var(--verde);
-      border-color: var(--verde);
-      color: #000;
-    }
-    .btn-dg-verde:hover {
-      background: #fff;
-      border-color: var(--verde);
-      color: var(--verde);
-    }
-    /* outline branco */
-    .btn-dg-outline {
-      background: transparent;
-      border-color: rgba(255,255,255,0.35);
-      color: #fff;
-    }
-    .btn-dg-outline:hover {
-      background: #fff;
-      border-color: #fff;
-      color: #000;
-    }
-
-    /* ── FILE INPUT ── */
-    .dg-file-wrap {
-      position: relative;
-      display: inline-block;
-    }
-    .dg-file-wrap input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-    }
-    .dg-file-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,0.3);
-      padding: 0.45rem 1.2rem;
-      font-size: 0.84rem;
-      font-weight: 600;
-      background: transparent;
-      color: #fff;
-      pointer-events: none;
-      transition: background .15s, color .15s, border-color .15s;
-    }
-    .dg-file-wrap:hover .dg-file-btn {
-      background: #fff;
-      border-color: #fff;
-      color: var(--verde);
-    }
-    .dg-file-name {
-      font-size: 0.79rem;
-      color: var(--txt-fraco);
-    }
-
-    /* ── TABELA ── */
-    .dg-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-    }
-    .dg-table thead th {
-      color: var(--verde);
-      font-weight: 700;
-      font-size: 0.77rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 0.5rem 0.6rem;
-      border-bottom: 1px solid rgba(10,191,4,0.25);
-      background: transparent;
-    }
-    .dg-table tbody tr { transition: background .1s; }
-    .dg-table tbody tr:hover { background: rgba(255,255,255,0.04); }
-    .dg-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
-    .dg-table tbody td {
-      padding: 0.45rem 0.6rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      color: var(--txt);
-    }
-
-    /* ── TOTAL BAR ── */
-    .dg-total {
-      margin-top: 0.6rem;
-      padding: 0.5rem 0.85rem;
-      border-radius: 0.5rem;
-      background: linear-gradient(90deg, rgba(10,191,4,0.14) 0%, transparent 100%);
-      border-left: 3px solid var(--verde);
-      font-size: 0.82rem;
-      color: var(--txt);
-    }
-    .dg-total strong { color: var(--verde); }
-
-    /* ── GRÁFICO ── */
-    .dg-chart-box {
-      margin-top: 1rem;
-      background: #181818;
-      border-radius: 0.7rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 0.85rem 1rem;
-    }
-    .dg-chart-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--txt-fraco);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    canvas { width: 100% !important; height: 200px !important; display: block; }
-
-    /* ── ALERTS ── */
-    .dg-alert {
-      border-radius: 0.6rem;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.8rem;
-      border: 1px solid;
-      margin-bottom: 0.75rem;
-    }
-    .dg-alert-ok {
-      background: rgba(10,191,4,0.08);
-      border-color: rgba(10,191,4,0.45);
-      color: rgba(200,255,200,0.92);
-    }
-    .dg-alert-err {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.28);
-      color: rgba(255,255,255,0.88);
-    }
-    .dg-alert-info {
-      background: rgba(10,191,4,0.06);
-      border-color: rgba(10,191,4,0.25);
-      color: rgba(200,255,200,0.8);
-    }
-
-    /* ── FOOTER ── */
-    .dg-footer {
-      background: #040404;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 0.75rem 0;
-      font-size: 0.77rem;
-      color: var(--txt-fraco);
-    }
-    .dg-footer .brand { color: var(--verde); font-weight: 700; }
-
-    @media (max-width: 768px) {
-      .dg-card { padding: 1.2rem 1rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="dg-header">
-  <div class="container">
-    <div class="row align-items-center g-3">
-      <div class="col-auto">
-        <!-- Substitua o src pelo caminho do seu logo -->
+  <!-- TELA DE LOGIN -->
+  <div id="login-screen" class="login-container">
+    <div class="login-box">
+      <div class="login-logo">
         <img src="logo.png" alt="Logo" class="dg-logo">
       </div>
-      <div class="col">
-        <div class="dg-header-title">Ferramentas Dgtais</div>
-        <div class="dg-header-sub">Contador de eventos · Separador · Formatador de contatos</div>
-      </div>
+      <h1 class="login-title">Ferramentas Dgtais</h1>
+      <p class="login-subtitle">Acesso restrito - Marketing</p>
+      
+      <form id="login-form">
+        <div class="mb-3">
+          <input type="text" id="login-user" class="form-control" placeholder="Usuário" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" id="login-pass" class="form-control" placeholder="Senha" required>
+        </div>
+        <div id="login-error" class="login-error"></div>
+        <button type="submit" class="btn-dg btn-dg-verde w-100">Entrar</button>
+      </form>
+      <p class="login-footer">By Dgtais - Yank Cordeiro</p>
     </div>
   </div>
-</header>
 
-<!-- MAIN -->
-<main class="dg-main">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-11">
-        <div class="dg-card">
+  <!-- ÁREA PRINCIPAL (oculta até login) -->
+  <div id="main-app" style="display: none;">
 
-          <!-- TABS -->
-          <ul class="nav nav-pills mb-4" id="tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" data-bs-toggle="pill"
-                data-bs-target="#pane-contador" type="button" id="tab-contador">
-                Contador de Eventos / Origens
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" data-bs-toggle="pill"
-                data-bs-target="#pane-separador" type="button" id="tab-separador">
-                Separador de Números CSV
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" data-bs-toggle="pill"
-                data-bs-target="#pane-formatador" type="button" id="tab-formatador">
-                Formatador de Telefones
-              </button>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-
-            <!-- ═══════════════════════════════════
-                 MÓDULO 1 – CONTADOR
-            ═══════════════════════════════════ -->
-            <div class="tab-pane fade show active" id="pane-contador">
-              <h2 class="dg-section-title">Contador de Eventos e Origens</h2>
-              <p class="dg-section-desc">
-                Envie uma planilha Excel com as colunas <code>eventos</code> e
-                <code>origens</code>. O app conta quantas vezes cada um aparece.
-              </p>
-
-              <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                <div class="dg-file-wrap">
-                  <input type="file" id="contadorFile" accept=".xlsx,.xls">
-                  <div class="dg-file-btn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2.5">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                      <polyline points="17 8 12 3 7 8"/>
-                      <line x1="12" y1="3" x2="12" y2="15"/>
-                    </svg>
-                    Escolher arquivo
-                  </div>
-                </div>
-                <span class="dg-file-name" id="contadorFileName">Nenhum arquivo selecionado</span>
-              </div>
-
-              <button class="btn-dg btn-dg-verde mb-3" id="btnContador">
-                Processar planilha
-              </button>
-
-              <div id="contadorAlert"></div>
-
-              <div id="contadorResult" style="display:none;">
-                <div class="row g-3">
-
-                  <!-- Eventos -->
-                  <div class="col-md-6">
-                    <div class="dg-inner">
-                      <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
-                        Contagem de Eventos
-                      </div>
-                      <div style="overflow-x:auto;">
-                        <table class="dg-table">
-                          <thead>
-                            <tr><th>#</th><th>Evento</th><th style="text-align:right;">Qtd</th></tr>
-                          </thead>
-                          <tbody id="tbEventos"></tbody>
-                        </table>
-                      </div>
-                      <div class="dg-total">
-                        Total de registros: <strong id="totEventos"></strong>
-                      </div>
-                      <div class="dg-chart-box">
-                        <div class="dg-chart-label">Distribuição por Evento</div>
-                        <canvas id="chartEventos"></canvas>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Origens -->
-                  <div class="col-md-6">
-                    <div class="dg-inner">
-                      <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
-                        Contagem de Origens
-                      </div>
-                      <div style="overflow-x:auto;">
-                        <table class="dg-table">
-                          <thead>
-                            <tr><th>#</th><th>Origem</th><th style="text-align:right;">Qtd</th></tr>
-                          </thead>
-                          <tbody id="tbOrigens"></tbody>
-                        </table>
-                      </div>
-                      <div class="dg-total">
-                        Total de registros: <strong id="totOrigens"></strong>
-                      </div>
-                      <div class="dg-chart-box">
-                        <div class="dg-chart-label">Distribuição por Origem</div>
-                        <canvas id="chartOrigens"></canvas>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <!-- ═══════════════════════════════════
-                 MÓDULO 2 – SEPARADOR
-            ═══════════════════════════════════ -->
-            <div class="tab-pane fade" id="pane-separador">
-              <h2 class="dg-section-title">Separador de Números CSV</h2>
-              <p class="dg-section-desc">
-                Envie um CSV com colunas <code>Nome ; Email ; Telefones</code>.
-                Se houver vários números separados por <code>;</code>, cada um
-                vira uma linha. Saída sempre como <code>numeros_separados.csv</code>.
-              </p>
-
-              <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                <div class="dg-file-wrap">
-                  <input type="file" id="separadorFile" accept=".csv">
-                  <div class="dg-file-btn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2.5">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                      <polyline points="17 8 12 3 7 8"/>
-                      <line x1="12" y1="3" x2="12" y2="15"/>
-                    </svg>
-                    Escolher arquivo
-                  </div>
-                </div>
-                <span class="dg-file-name" id="separadorFileName">Nenhum arquivo selecionado</span>
-              </div>
-
-              <button class="btn-dg btn-dg-verde mb-3" id="btnSeparador">
-                Processar CSV
-              </button>
-
-              <div id="separadorAlert"></div>
-
-              <div id="separadorResult" style="display:none;">
-                <div class="d-flex justify-content-between align-items-center
-                            flex-wrap gap-2 mb-2">
-                  <span style="font-size:.85rem;font-weight:600;">
-                    Pré-visualização — primeiras 20 linhas
-                  </span>
-                  <div class="d-flex gap-2 flex-wrap">
-                    <button class="btn-dg btn-dg-outline" id="btnDownloadSep">
-                      Baixar numeros_separados.csv
-                    </button>
-                    <button class="btn-dg btn-dg-verde" id="btnFormatarDaqui">
-                      Formatar telefones deste resultado
-                    </button>
-                  </div>
-                </div>
-                <div style="overflow-x:auto;">
-                  <table class="dg-table">
-                    <thead>
-                      <tr><th>Nome</th><th>Email</th><th>Telefone</th></tr>
-                    </thead>
-                    <tbody id="tbSeparador"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <!-- ═══════════════════════════════════
-                 MÓDULO 3 – FORMATADOR
-            ═══════════════════════════════════ -->
-            <div class="tab-pane fade" id="pane-formatador">
-              <h2 class="dg-section-title">Formatador de Números de Telefone</h2>
-              <p class="dg-section-desc">
-                Envie um CSV com coluna <code>telefone</code> ou <code>phone</code>.
-                O app limpa, padroniza para <code>55DD9XXXXXXXX</code>
-                e classifica como Celular ou Fixo.
-              </p>
-
-              <div class="dg-alert dg-alert-info mb-3">
-                Dica: use o botão <strong>"Formatar telefones deste resultado"</strong>
-                no módulo Separador para não precisar fazer upload novamente.
-              </div>
-
-              <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                <div class="dg-file-wrap">
-                  <input type="file" id="formatadorFile" accept=".csv">
-                  <div class="dg-file-btn">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2.5">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                      <polyline points="17 8 12 3 7 8"/>
-                      <line x1="12" y1="3" x2="12" y2="15"/>
-                    </svg>
-                    Escolher arquivo
-                  </div>
-                </div>
-                <span class="dg-file-name" id="formatadorFileName">Nenhum arquivo selecionado</span>
-              </div>
-
-              <button class="btn-dg btn-dg-verde mb-3" id="btnFormatador">
-                Formatar telefones
-              </button>
-
-              <div id="formatadorAlert"></div>
-
-              <div id="formatadorResult" style="display:none;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span style="font-size:.85rem;font-weight:600;">
-                    Pré-visualização — primeiras 20 linhas
-                  </span>
-                  <button class="btn-dg btn-dg-outline" id="btnDownloadFmt">
-                    Baixar CSV formatado
-                  </button>
-                </div>
-                <div style="overflow-x:auto;">
-                  <table class="dg-table">
-                    <thead id="fmtHead"></thead>
-                    <tbody id="fmtBody"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /tab-content -->
-
-          <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
-            Um programa feito pelo Yank – By Dgtais.
+    <!-- HEADER -->
+    <header class="dg-header">
+      <div class="container">
+        <div class="row align-items-center g-3">
+          <div class="col-auto">
+            <img src="logo.png" alt="Logo" class="dg-logo">
           </div>
-        </div><!-- /dg-card -->
+          <div class="col">
+            <div class="dg-header-title">Ferramentas Dgtais</div>
+            <div class="dg-header-sub">Contador de eventos · Separador · Formatador de contatos</div>
+          </div>
+          <div class="col-auto">
+            <button class="btn-dg btn-dg-outline btn-sm" id="btn-logout">Sair</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</main>
+    </header>
 
-<!-- FOOTER -->
-<footer class="dg-footer">
-  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-    <span><span class="brand">Dgtais</span> – Yank Cordeiro – Marketing Digital</span>
-    <span>Ferramentas que facilitam o trabalho no Marketing</span>
-  </div>
-</footer>
+    <!-- MAIN -->
+    <main class="dg-main">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-11">
+            <div class="dg-card">
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- SheetJS -->
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+              <!-- TABS -->
+              <ul class="nav nav-pills mb-4" id="tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-bs-toggle="pill"
+                    data-bs-target="#pane-contador" type="button" id="tab-contador">
+                    Contador de Eventos / Origens
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="pill"
+                    data-bs-target="#pane-separador" type="button" id="tab-separador">
+                    Separador de Números CSV
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="pill"
+                    data-bs-target="#pane-formatador" type="button" id="tab-formatador">
+                    Formatador de Telefones
+                  </button>
+                </li>
+              </ul>
 
-<script>
-/* ════════════════════════════════════════
-   UTILITÁRIOS
-════════════════════════════════════════ */
-const VERDE = "#0abf04";
-const CORES = [
-  "#0abf04","#2ecc71","#1abc9c","#27ae60",
-  "#52be80","#82e0aa","#a9dfbf","#d5f5e3"
-];
+              <div class="tab-content">
 
-function showAlert(id, msg, tipo = "err") {
-  const cls = tipo === "ok" ? "dg-alert-ok" : tipo === "info" ? "dg-alert-info" : "dg-alert-err";
-  document.getElementById(id).innerHTML =
-    `<div class="dg-alert ${cls}">${msg}</div>`;
-}
-function clearAlert(id) { document.getElementById(id).innerHTML = ""; }
+                <!-- MÓDULO 1 – CONTADOR -->
+                <div class="tab-pane fade show active" id="pane-contador">
+                  <h2 class="dg-section-title">Contador de Eventos e Origens</h2>
+                  <p class="dg-section-desc">
+                    Envie uma planilha Excel com as colunas <code>eventos</code> e
+                    <code>origens</code>. O app conta quantas vezes cada um aparece.
+                  </p>
 
-function parseCsv(txt) {
-  return txt.replace(/\r\n/g,"\n").split("\n")
-    .filter(Boolean)
-    .map(l => l.split(";"));
-}
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="contadorFile" accept=".xlsx,.xls">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="contadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
 
-function toCsv(rows) {
-  return rows.map(r =>
-    r.map(v => {
-      v = String(v ?? "");
-      return (v.includes(";") || v.includes('"') || v.includes("\n"))
-        ? `"${v.replace(/"/g,'""')}"` : v;
-    }).join(";")
-  ).join("\n");
-}
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnContador">
+                    Processar planilha
+                  </button>
 
-function baixar(nome, conteudo) {
-  const blob = new Blob([conteudo], { type: "text/csv;charset=utf-8;" });
-  const url  = URL.createObjectURL(blob);
-  const a    = Object.assign(document.createElement("a"), { href: url, download: nome });
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-}
+                  <div id="contadorAlert"></div>
 
-/* file labels */
-["contador","separador","formatador"].forEach(m => {
-  document.getElementById(`${m}File`).addEventListener("change", function() {
-    document.getElementById(`${m}FileName`).textContent =
-      this.files[0] ? this.files[0].name : "Nenhum arquivo selecionado";
-  });
-});
+                  <div id="contadorResult" style="display:none;">
+                    <div class="row g-3">
 
-/* gráficos */
-const charts = {};
-function buildChart(id, labels, values) {
-  if (charts[id]) charts[id].destroy();
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: labels.map((_,i) => CORES[i % CORES.length]),
-        borderRadius: 5,
-        borderSkipped: false
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: { label: c => ` ${c.parsed.y} ocorrência${c.parsed.y !== 1 ? "s" : ""}` }
-        }
-      },
-      scales: {
-        x: {
-          ticks: { color: "rgba(255,255,255,0.55)", font: { family:"Montserrat", size:10 }, maxRotation:38 },
-          grid:  { color: "rgba(255,255,255,0.04)" }
-        },
-        y: {
-          ticks: { color: "rgba(255,255,255,0.45)", font: { family:"Montserrat", size:10 }, stepSize:1 },
-          grid:  { color: "rgba(255,255,255,0.06)" }
-        }
-      }
-    }
-  });
-}
+                      <!-- Eventos -->
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                            Contagem de Eventos
+                          </div>
+                          <div style="overflow-x:auto;">
+                            <table class="dg-table">
+                              <thead>
+                                <tr><th>#</th><th>Evento</th><th style="text-align:right;">Qtd</th></tr>
+                              </thead>
+                              <tbody id="tbEventos"></tbody>
+                            </table>
+                          </div>
+                          <div class="dg-total">
+                            Total de registros: <strong id="totEventos"></strong>
+                          </div>
+                          <div class="dg-chart-box">
+                            <div class="dg-chart-label">Distribuição por Evento</div>
+                            <canvas id="chartEventos"></canvas>
+                          </div>
+                        </div>
+                      </div>
 
-/* ════════════════════════════════════════
-   MÓDULO 1 – CONTADOR
-   Fiel ao ContadorWindow do multtool.py
-════════════════════════════════════════ */
-document.getElementById("btnContador").addEventListener("click", () => {
-  clearAlert("contadorAlert");
-  const file = document.getElementById("contadorFile").files[0];
-  if (!file) { showAlert("contadorAlert","Selecione primeiro uma planilha Excel."); return; }
+                      <!-- Origens -->
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                            Contagem de Origens
+                          </div>
+                          <div style="overflow-x:auto;">
+                            <table class="dg-table">
+                              <thead>
+                                <tr><th>#</th><th>Origem</th><th style="text-align:right;">Qtd</th></tr>
+                              </thead>
+                              <tbody id="tbOrigens"></tbody>
+                            </table>
+                          </div>
+                          <div class="dg-total">
+                            Total de registros: <strong id="totOrigens"></strong>
+                          </div>
+                          <div class="dg-chart-box">
+                            <div class="dg-chart-label">Distribuição por Origem</div>
+                            <canvas id="chartOrigens"></canvas>
+                          </div>
+                        </div>
+                      </div>
 
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const wb   = XLSX.read(new Uint8Array(e.target.result), { type:"array" });
-      const json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { defval:"" });
+                    </div>
+                  </div>
+                </div>
 
-      if (!json.length) { showAlert("contadorAlert","Planilha vazia."); return; }
+                <!-- MÓDULO 2 – SEPARADOR -->
+                <div class="tab-pane fade" id="pane-separador">
+                  <h2 class="dg-section-title">Separador de Números CSV</h2>
+                  <p class="dg-section-desc">
+                    Envie um CSV com colunas <code>Nome ; Email ; Telefones</code>.
+                    Se houver vários números separados por <code>;</code>, cada um
+                    vira uma linha. Saída sempre como <code>numeros_separados.csv</code>.
+                  </p>
 
-      if (!("eventos" in json[0]) || !("origens" in json[0])) {
-        showAlert("contadorAlert",
-          "Colunas obrigatórias <code>eventos</code> e <code>origens</code> não encontradas.");
-        return;
-      }
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="separadorFile" accept=".csv">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="separadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
 
-      /* lógica idêntica ao Python:
-         df['evento_limpo'] = df['eventos'].str.split('/', n=1).str[0].str.strip()
-         ce = df['evento_limpo'].value_counts()
-         co = df['origens'].value_counts()
-      */
-      const evCount = {}, orCount = {};
-      json.forEach(row => {
-        const ev = String(row["eventos"] ?? "").split("/")[0].trim();
-        if (ev) evCount[ev] = (evCount[ev] || 0) + 1;
-        const or = String(row["origens"] ?? "");
-        if (or) orCount[or] = (orCount[or] || 0) + 1;
-      });
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnSeparador">
+                    Processar CSV
+                  </button>
 
-      const evArr = Object.entries(evCount).sort((a,b) => b[1]-a[1]);
-      const orArr = Object.entries(orCount).sort((a,b) => b[1]-a[1]);
+                  <div id="separadorAlert"></div>
 
-      /* tabela eventos */
-      document.getElementById("tbEventos").innerHTML =
-        evArr.map(([n,q],i) =>
-          `<tr><td>${i+1}</td><td>${n}</td><td style="text-align:right;">${q}</td></tr>`
-        ).join("");
-      const totEv = evArr.reduce((s,[,q])=>s+q,0);
-      document.getElementById("totEventos").textContent = totEv;
+                  <div id="separadorResult" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center
+                                flex-wrap gap-2 mb-2">
+                      <span style="font-size:.85rem;font-weight:600;">
+                        Pré-visualização — primeiras 20 linhas
+                      </span>
+                      <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn-dg btn-dg-outline" id="btnDownloadSep">
+                          Baixar numeros_separados.csv
+                        </button>
+                        <button class="btn-dg btn-dg-verde" id="btnFormatarDaqui">
+                          Formatar telefones deste resultado
+                        </button>
+                      </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                      <table class="dg-table">
+                        <thead>
+                          <tr><th>Nome</th><th>Email</th><th>Telefone</th></tr>
+                        </thead>
+                        <tbody id="tbSeparador"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
 
-      /* tabela origens */
-      document.getElementById("tbOrigens").innerHTML =
-        orArr.map(([n,q],i) =>
-          `<tr><td>${i+1}</td><td>${n}</td><td style="text-align:right;">${q}</td></tr>`
-        ).join("");
-      const totOr = orArr.reduce((s,[,q])=>s+q,0);
-      document.getElementById("totOrigens").textContent = totOr;
+                <!-- MÓDULO 3 – FORMATADOR -->
+                <div class="tab-pane fade" id="pane-formatador">
+                  <h2 class="dg-section-title">Formatador de Números de Telefone</h2>
+                  <p class="dg-section-desc">
+                    Envie um CSV com coluna <code>telefone</code> ou <code>phone</code>.
+                    O app limpa, padroniza para <code>55DD9XXXXXXXX</code>
+                    e classifica como Celular ou Fixo.
+                  </p>
 
-      document.getElementById("contadorResult").style.display = "block";
+                  <div class="dg-alert dg-alert-info mb-3">
+                    Dica: use o botão <strong>"Formatar telefones deste resultado"</strong>
+                    no módulo Separador para não precisar fazer upload novamente.
+                  </div>
 
-      /* gráficos */
-      buildChart("chartEventos", evArr.map(([n])=>n), evArr.map(([,q])=>q));
-      buildChart("chartOrigens", orArr.map(([n])=>n), orArr.map(([,q])=>q));
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="formatadorFile" accept=".csv">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="formatadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
 
-      showAlert("contadorAlert","Processamento concluído com sucesso.","ok");
-    } catch(err) {
-      console.error(err);
-      showAlert("contadorAlert","Erro ao processar a planilha. Verifique se é um Excel válido.");
-    }
-  };
-  reader.readAsArrayBuffer(file);
-});
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnFormatador">
+                    Formatar telefones
+                  </button>
 
-/* ════════════════════════════════════════
-   MÓDULO 2 – SEPARADOR
-   Fiel ao SeparadorWindow do multtool.py
-════════════════════════════════════════ */
-let sepArray = [];
-let sepCsv   = "";
+                  <div id="formatadorAlert"></div>
 
-document.getElementById("btnSeparador").addEventListener("click", () => {
-  clearAlert("separadorAlert");
-  sepArray = []; sepCsv = "";
-  document.getElementById("separadorResult").style.display = "none";
+                  <div id="formatadorResult" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span style="font-size:.85rem;font-weight:600;">
+                        Pré-visualização — primeiras 20 linhas
+                      </span>
+                      <button class="btn-dg btn-dg-outline" id="btnDownloadFmt">
+                        Baixar CSV formatado
+                      </button>
+                    </div>
+                    <div style="overflow-x:auto;">
+                      <table class="dg-table">
+                        <thead id="fmtHead"></thead>
+                        <tbody id="fmtBody"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
 
-  const file = document.getElementById("separadorFile").files[0];
-  if (!file) { showAlert("separadorAlert","Selecione o arquivo CSV."); return; }
+              </div><!-- /tab-content -->
 
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const data    = parseCsv(e.target.result);
-      const newData = [];
+              <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
+                Um programa feito pelo Yank – By Dgtais.
+              </div>
+            </div><!-- /dg-card -->
+          </div>
+        </div>
+      </div>
+    </main>
 
-      /* lógica idêntica ao Python:
-         for row in data:
-             if len(row) >= 3:
-                 name, email, phones = row[0], row[1], row[2]
-                 for ph in phones.split(';'):
-                     new_data.append([name, email, ph.strip()])
-      */
-      data.forEach(row => {
-        if (row.length >= 3) {
-          const [name, email, phones] = row;
-          String(phones ?? "").split(";").forEach(ph => {
-            const c = ph.trim();
-            if (c) newData.push([name, email, c]);
-          });
-        }
-      });
+    <!-- FOOTER -->
+    <footer class="dg-footer">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span><span class="brand">Dgtais</span> – Yank Cordeiro – Marketing Digital</span>
+        <span>Ferramentas que facilitam o trabalho no Marketing</span>
+      </div>
+    </footer>
 
-      if (!newData.length) {
-        showAlert("separadorAlert","Nenhum número encontrado no arquivo.");
-        return;
-      }
+  </div><!-- /main-app -->
 
-      sepArray = [["Nome","Email","Telefone"], ...newData];
-      sepCsv   = toCsv(sepArray);
-
-      document.getElementById("tbSeparador").innerHTML =
-        newData.slice(0,20).map(r =>
-          `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`
-        ).join("");
-
-      document.getElementById("separadorResult").style.display = "block";
-      showAlert("separadorAlert",
-        `Processamento concluído. <strong>${newData.length}</strong> linhas geradas.`, "ok");
-    } catch(err) {
-      console.error(err);
-      showAlert("separadorAlert","Erro ao ler o CSV. Verifique se o delimitador é <code>;</code>.");
-    }
-  };
-  reader.readAsText(file, "utf-8");
-});
-
-document.getElementById("btnDownloadSep").addEventListener("click", () => {
-  if (sepCsv) baixar("numeros_separados.csv", sepCsv);
-});
-
-/* ════════════════════════════════════════
-   MÓDULO 3 – FORMATADOR
-   Fiel ao FormatadorWindow do multtool.py
-════════════════════════════════════════ */
-let fmtCsv = "";
-
-/* funções idênticas ao Python */
-function limpar(n) { return String(n ?? "").replace(/\D/g,""); }
-
-function formatar(n) {
-  let num = limpar(n);
-  if (num.length === 10) {
-    num = "6789".includes(num[2])
-      ? "55" + num.slice(0,2) + "9" + num.slice(2)
-      : "55" + num;
-  } else if (num.length === 11) {
-    num = "55" + num;
-  }
-  return num;
-}
-
-function tipo(n) {
-  const s = String(n ?? "");
-  if (s.length !== 13) return "Inválido";
-  return s[4] === "9" ? "Celular" : "Fixo";
-}
-
-function aplicarFormatador(linhas, idxTel) {
-  const resultado = [];
-  const header = [...linhas[0], "Numero_Formatado", "Tipo_Telefone"];
-  resultado.push(header);
-  for (let i = 1; i < linhas.length; i++) {
-    const row = [...linhas[i]];
-    if (row.length === 1 && row[0] === "") continue;
-    const fmt = formatar(row[idxTel] ?? "");
-    row.push(fmt, tipo(fmt));
-    resultado.push(row);
-  }
-  return resultado;
-}
-
-function renderFormatador(novas) {
-  document.getElementById("fmtHead").innerHTML =
-    `<tr>${novas[0].map(c=>`<th>${c}</th>`).join("")}</tr>`;
-  document.getElementById("fmtBody").innerHTML =
-    novas.slice(1,21).map(r =>
-      `<tr>${r.map(v=>`<td>${v??""}</td>`).join("")}</tr>`
-    ).join("");
-  document.getElementById("formatadorResult").style.display = "block";
-}
-
-/* upload manual */
-document.getElementById("btnFormatador").addEventListener("click", () => {
-  clearAlert("formatadorAlert");
-  fmtCsv = "";
-  document.getElementById("formatadorResult").style.display = "none";
-
-  const file = document.getElementById("formatadorFile").files[0];
-  if (!file) { showAlert("formatadorAlert","Selecione o arquivo CSV."); return; }
-
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const linhas = parseCsv(e.target.result);
-      if (!linhas.length) { showAlert("formatadorAlert","CSV vazio."); return; }
-
-      const idxTel = linhas[0].findIndex(h =>
-        ["telefone","phone"].some(k => String(h).toLowerCase().includes(k))
-      );
-      if (idxTel === -1) {
-        showAlert("formatadorAlert","Coluna de telefone não encontrada no cabeçalho.");
-        return;
-      }
-
-      const novas = aplicarFormatador(linhas, idxTel);
-      fmtCsv = toCsv(novas);
-      renderFormatador(novas);
-      showAlert("formatadorAlert","Telefones formatados com sucesso.","ok");
-    } catch(err) {
-      console.error(err);
-      showAlert("formatadorAlert","Erro ao processar o CSV.");
-    }
-  };
-  reader.readAsText(file, "utf-8");
-});
-
-/* botão separador → formatador direto (sem novo upload) */
-document.getElementById("btnFormatarDaqui").addEventListener("click", () => {
-  if (!sepArray.length) {
-    showAlert("separadorAlert","Primeiro processe um CSV no separador.");
-    return;
-  }
-  /* coluna Telefone está sempre no índice 2 do resultado do separador */
-  const novas = aplicarFormatador(sepArray, 2);
-  fmtCsv = toCsv(novas);
-
-  /* navega para a aba formatador */
-  bootstrap.Tab.getOrCreateInstance(
-    document.getElementById("tab-formatador")
-  ).show();
-
-  clearAlert("formatadorAlert");
-  renderFormatador(novas);
-  showAlert("formatadorAlert",
-    "Telefones formatados a partir do resultado do Separador.", "ok");
-});
-
-document.getElementById("btnDownloadFmt").addEventListener("click", () => {
-  if (fmtCsv) baixar("telefones_formatados.csv", fmtCsv);
-});
-</script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  
+  <script src="app.js"></script>
 </body>
 </html>

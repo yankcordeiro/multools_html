@@ -1,0 +1,354 @@
+:root {
+  --verde:       #0abf04;
+  --verde-esc:   #078a02;
+  --branco:      #ffffff;
+  --preto:       #000000;
+  --bg:          #080808;
+  --cinza:       #161616;
+  --cinza2:      #1e1e1e;
+  --cinza3:      #252525;
+  --borda:       rgba(255,255,255,0.07);
+  --txt:         rgba(255,255,255,0.85);
+  --txt-fraco:   rgba(255,255,255,0.55);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Montserrat", system-ui, sans-serif;
+  background: #080808;
+  color: var(--txt);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Login */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #111 0%, #060606 100%);
+  padding: 1rem;
+}
+
+.login-box {
+  background: linear-gradient(160deg, #1a1a1a 0%, #0e0e0e 100%);
+  border-radius: 1rem;
+  border: 1px solid var(--borda);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.85);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-logo {
+  margin-bottom: 1.5rem;
+}
+
+.login-logo .dg-logo {
+  max-height: 64px;
+  object-fit: contain;
+}
+
+.login-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--verde);
+  text-shadow: 0 0 14px rgba(10,191,4,0.5);
+  margin-bottom: 0.3rem;
+}
+
+.login-subtitle {
+  font-size: 0.8rem;
+  color: var(--txt-fraco);
+  margin-bottom: 1.8rem;
+}
+
+#login-form .form-control {
+  background: #1c1c1c;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#login-form .form-control:focus {
+  background: #1c1c1c;
+  border-color: var(--verde);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(10,191,4,0.2);
+}
+
+#login-form .form-control::placeholder {
+  color: var(--txt-fraco);
+}
+
+.login-error {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  min-height: 1.2rem;
+}
+
+.login-footer {
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+  color: var(--txt-fraco);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.78rem;
+}
+
+/* RESET bootstrap que adiciona cor rosa/vermelha */
+a, a:visited, a:hover, a:focus { color: var(--verde); text-decoration: none; }
+code, kbd, samp, pre {
+  color: var(--verde);
+  background: rgba(10,191,4,0.1);
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  font-size: 0.82em;
+}
+:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+::selection { background: rgba(10,191,4,0.3); color: #fff; }
+
+/* HEADER */
+.dg-header {
+  background: linear-gradient(135deg, #111 0%, #060606 100%);
+  border-bottom: 1px solid rgba(10,191,4,0.15);
+  padding: 0.85rem 0;
+}
+.dg-logo { max-height: 54px; object-fit: contain; }
+.dg-header-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verde);
+  text-shadow: 0 0 14px rgba(10,191,4,0.5);
+}
+.dg-header-sub {
+  font-size: 0.78rem;
+  color: var(--txt-fraco);
+  margin-top: 0.1rem;
+}
+
+/* MAIN */
+.dg-main { flex: 1; padding: 2rem 0 3rem; }
+
+/* CARD */
+.dg-card {
+  background: linear-gradient(160deg, #1a1a1a 0%, #0e0e0e 100%);
+  border-radius: 1rem;
+  border: 1px solid var(--borda);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.85);
+  padding: 1.75rem 1.5rem;
+}
+.dg-inner {
+  background: #1c1c1c;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 1rem 1.15rem;
+}
+
+/* TABS */
+.nav-pills { gap: 0.4rem; flex-wrap: wrap; }
+.nav-pills .nav-link {
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: var(--txt-fraco);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.4rem 1.1rem;
+  background: transparent;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.nav-pills .nav-link.active {
+  background: var(--verde);
+  color: #000;
+  border-color: var(--verde);
+  box-shadow: 0 0 18px rgba(10,191,4,0.5);
+}
+.nav-pills .nav-link:hover:not(.active) {
+  background: #ffffff;
+  color: var(--verde);
+  border-color: var(--verde);
+}
+
+/* TÍTULOS */
+.dg-section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+.dg-section-desc  { font-size: 0.84rem; color: var(--txt-fraco); margin-bottom: 1rem; }
+
+/* BOTÕES */
+.btn-dg {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 0.48rem 1.4rem;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.btn-dg-verde {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #000;
+}
+.btn-dg-verde:hover {
+  background: #fff;
+  border-color: var(--verde);
+  color: var(--verde);
+}
+.btn-dg-outline {
+  background: transparent;
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+}
+.btn-dg-outline:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+/* FILE INPUT */
+.dg-file-wrap {
+  position: relative;
+  display: inline-block;
+}
+.dg-file-wrap input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.dg-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 0.45rem 1.2rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  background: transparent;
+  color: #fff;
+  pointer-events: none;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.dg-file-wrap:hover .dg-file-btn {
+  background: #fff;
+  border-color: #fff;
+  color: var(--verde);
+}
+.dg-file-name {
+  font-size: 0.79rem;
+  color: var(--txt-fraco);
+}
+
+/* TABELA */
+.dg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+.dg-table thead th {
+  color: var(--verde);
+  font-weight: 700;
+  font-size: 0.77rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(10,191,4,0.25);
+  background: transparent;
+}
+.dg-table tbody tr { transition: background .1s; }
+.dg-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.dg-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
+.dg-table tbody td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--txt);
+}
+
+/* TOTAL BAR */
+.dg-total {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, rgba(10,191,4,0.14) 0%, transparent 100%);
+  border-left: 3px solid var(--verde);
+  font-size: 0.82rem;
+  color: var(--txt);
+}
+.dg-total strong { color: var(--verde); }
+
+/* GRÁFICO */
+.dg-chart-box {
+  margin-top: 1rem;
+  background: #181818;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 0.85rem 1rem;
+}
+.dg-chart-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--txt-fraco);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+canvas { width: 100% !important; height: 200px !important; display: block; }
+
+/* ALERTS */
+.dg-alert {
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.8rem;
+  border: 1px solid;
+  margin-bottom: 0.75rem;
+}
+.dg-alert-ok {
+  background: rgba(10,191,4,0.08);
+  border-color: rgba(10,191,4,0.45);
+  color: rgba(200,255,200,0.92);
+}
+.dg-alert-err {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.88);
+}
+.dg-alert-info {
+  background: rgba(10,191,4,0.06);
+  border-color: rgba(10,191,4,0.25);
+  color: rgba(200,255,200,0.8);
+}
+
+/* FOOTER */
+.dg-footer {
+  background: #040404;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 0.75rem 0;
+  font-size: 0.77rem;
+  color: var(--txt-fraco);
+}
+.dg-footer .brand { color: var(--verde); font-weight: 700; }
+
+@media (max-width: 768px) {
+  .dg-card { padding: 1.2rem 1rem; }
+}
