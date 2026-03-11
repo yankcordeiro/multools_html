@@ -44,14 +44,85 @@
       <div class="container">
         <div class="row align-items-center g-3">
           <div class="col-auto">
-            <img src="logo.png" alt="Logo" class="dg-logo">
+            <a href="#" id="logo-link">
+              <img src="logo.png" alt="Logo" class="dg-logo">
+            </a>
           </div>
           <div class="col">
-            <div class="dg-header-title">Ferramentas Dgtais</div>
-            <div class="dg-header-sub">Contador de eventos · Separador · Formatador de contatos</div>
+            <div class="dg-header-sub">Ferramentas para uso no Marketing</div>
           </div>
-          <div class="col-auto">
-            <button class="btn-dg btn-dg-outline btn-sm" id="btn-logout">Sair</button>
+          <div class="col-auto d-flex gap-2 header-buttons">
+            <button class="btn-dg btn-dg-outline btn-sm" id="btn-theme" title="Alternar tema">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-sun" style="display:none;">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-moon">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <button class="btn-dg btn-dg-outline btn-sm" id="btn-menu" onclick="toggleMenu()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              Menu
+            </button>
+            <button class="btn-dg btn-dg-outline btn-sm btn-purple" id="btn-logout">Sair</button>
+            <div class="menu-dropdown" id="menu-dropdown">
+              <div class="menu-item" data-tool="home">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Início
+              </div>
+              <div class="menu-item" data-tool="contador">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Contador de Eventos
+              </div>
+              <div class="menu-item" data-tool="separador">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Separador de Números (CSV/Excel)
+              </div>
+              <div class="menu-item" data-tool="formatador">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                Formatador de Telefones (CSV/Excel)
+              </div>
+              <div class="menu-item" data-tool="utm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Construtor de UTMs
+              </div>
+              <div class="menu-item" data-tool="whatsapp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Link WhatsApp
+              </div>
+              <div class="menu-item" data-tool="contadorchars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                Contador de Caracteres
+              </div>
+              <div class="menu-item" data-tool="urls">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Validador de URLs
+              </div>
+              <div class="menu-item" data-tool="qrcode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                QR Code
+              </div>
+              <div class="menu-item" data-tool="pdfjpg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><rect x="8" y="12" width="8" height="6"/></svg>
+                Conversor PDF ↔ IMG
+              </div>
+              <div class="menu-item" data-tool="removerfundo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/></svg>
+                Remover Fundo
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -60,238 +131,713 @@
     <!-- MAIN -->
     <main class="dg-main">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-11">
-            <div class="dg-card">
+        
+        <!-- HOMEPAGE / DASHBOARD -->
+        <div id="home-page" style="display: none;">
+          <div class="row justify-content-center">
+            <div class="col-lg-11">
+              <div class="dg-card">
+                <h2 class="dg-section-title">Bem-vindo ao Ferramentas Dgtais</h2>
+                <p class="dg-section-desc">Escolha uma ferramenta para começar:</p>
 
-              <!-- TABS -->
-              <ul class="nav nav-pills mb-4" id="tabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" data-bs-toggle="pill"
-                    data-bs-target="#pane-contador" type="button" id="tab-contador">
-                    Contador de Eventos / Origens
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" data-bs-toggle="pill"
-                    data-bs-target="#pane-separador" type="button" id="tab-separador">
-                    Separador de Números CSV
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" data-bs-toggle="pill"
-                    data-bs-target="#pane-formatador" type="button" id="tab-formatador">
-                    Formatador de Telefones
-                  </button>
-                </li>
-              </ul>
-
-              <div class="tab-content">
-
-                <!-- MÓDULO 1 – CONTADOR -->
-                <div class="tab-pane fade show active" id="pane-contador">
-                  <h2 class="dg-section-title">Contador de Eventos e Origens</h2>
-                  <p class="dg-section-desc">
-                    Envie uma planilha Excel com as colunas <code>eventos</code> e
-                    <code>origens</code>. O app conta quantas vezes cada um aparece.
-                  </p>
-
-                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                    <div class="dg-file-wrap">
-                      <input type="file" id="contadorFile" accept=".xlsx,.xls">
-                      <div class="dg-file-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5">
+                <!-- Cards de Navegação -->
+                <div class="row g-3 mb-4">
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="contador" onclick="showToolsPage('contador')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                          <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                      </div>
+                      <h3>Contador de Eventos</h3>
+                      <p>Contagem de eventos e origens via planilha Excel</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="separador" onclick="showToolsPage('separador')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                           <polyline points="17 8 12 3 7 8"/>
                           <line x1="12" y1="3" x2="12" y2="15"/>
                         </svg>
-                        Escolher arquivo
                       </div>
-                    </div>
-                    <span class="dg-file-name" id="contadorFileName">Nenhum arquivo selecionado</span>
-                  </div>
-
-                  <button class="btn-dg btn-dg-verde mb-3" id="btnContador">
-                    Processar planilha
-                  </button>
-
-                  <div id="contadorAlert"></div>
-
-                  <div id="contadorResult" style="display:none;">
-                    <div class="row g-3">
-
-                      <!-- Eventos -->
-                      <div class="col-md-6">
-                        <div class="dg-inner">
-                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
-                            Contagem de Eventos
-                          </div>
-                          <div style="overflow-x:auto;">
-                            <table class="dg-table">
-                              <thead>
-                                <tr><th>#</th><th>Evento</th><th style="text-align:right;">Qtd</th></tr>
-                              </thead>
-                              <tbody id="tbEventos"></tbody>
-                            </table>
-                          </div>
-                          <div class="dg-total">
-                            Total de registros: <strong id="totEventos"></strong>
-                          </div>
-                          <div class="dg-chart-box">
-                            <div class="dg-chart-label">Distribuição por Evento</div>
-                            <canvas id="chartEventos"></canvas>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Origens -->
-                      <div class="col-md-6">
-                        <div class="dg-inner">
-                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
-                            Contagem de Origens
-                          </div>
-                          <div style="overflow-x:auto;">
-                            <table class="dg-table">
-                              <thead>
-                                <tr><th>#</th><th>Origem</th><th style="text-align:right;">Qtd</th></tr>
-                              </thead>
-                              <tbody id="tbOrigens"></tbody>
-                            </table>
-                          </div>
-                          <div class="dg-total">
-                            Total de registros: <strong id="totOrigens"></strong>
-                          </div>
-                          <div class="dg-chart-box">
-                            <div class="dg-chart-label">Distribuição por Origem</div>
-                            <canvas id="chartOrigens"></canvas>
-                          </div>
-                        </div>
-                      </div>
-
+                      <h3>Separador de Números</h3>
+                      <p>Separa números de telefone de arquivos CSV ou Excel</p>
                     </div>
                   </div>
-                </div>
-
-                <!-- MÓDULO 2 – SEPARADOR -->
-                <div class="tab-pane fade" id="pane-separador">
-                  <h2 class="dg-section-title">Separador de Números CSV</h2>
-                  <p class="dg-section-desc">
-                    Envie um CSV com colunas <code>Nome ; Email ; Telefones</code>.
-                    Se houver vários números separados por <code>;</code>, cada um
-                    vira uma linha. Saída sempre como <code>numeros_separados.csv</code>.
-                  </p>
-
-                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                    <div class="dg-file-wrap">
-                      <input type="file" id="separadorFile" accept=".csv">
-                      <div class="dg-file-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                          <polyline points="17 8 12 3 7 8"/>
-                          <line x1="12" y1="3" x2="12" y2="15"/>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="formatador" onclick="showToolsPage('formatador')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                          <line x1="3" y1="9" x2="21" y2="9"/>
+                          <line x1="9" y1="21" x2="9" y2="9"/>
                         </svg>
-                        Escolher arquivo
                       </div>
-                    </div>
-                    <span class="dg-file-name" id="separadorFileName">Nenhum arquivo selecionado</span>
-                  </div>
-
-                  <button class="btn-dg btn-dg-verde mb-3" id="btnSeparador">
-                    Processar CSV
-                  </button>
-
-                  <div id="separadorAlert"></div>
-
-                  <div id="separadorResult" style="display:none;">
-                    <div class="d-flex justify-content-between align-items-center
-                                flex-wrap gap-2 mb-2">
-                      <span style="font-size:.85rem;font-weight:600;">
-                        Pré-visualização — primeiras 20 linhas
-                      </span>
-                      <div class="d-flex gap-2 flex-wrap">
-                        <button class="btn-dg btn-dg-outline" id="btnDownloadSep">
-                          Baixar numeros_separados.csv
-                        </button>
-                        <button class="btn-dg btn-dg-verde" id="btnFormatarDaqui">
-                          Formatar telefones deste resultado
-                        </button>
-                      </div>
-                    </div>
-                    <div style="overflow-x:auto;">
-                      <table class="dg-table">
-                        <thead>
-                          <tr><th>Nome</th><th>Email</th><th>Telefone</th></tr>
-                        </thead>
-                        <tbody id="tbSeparador"></tbody>
-                      </table>
+                      <h3>Formatador de Telefones</h3>
+                      <p>Formata telefones para padrão 55DD9XXXXXXXX (CSV ou Excel)</p>
                     </div>
                   </div>
-                </div>
-
-                <!-- MÓDULO 3 – FORMATADOR -->
-                <div class="tab-pane fade" id="pane-formatador">
-                  <h2 class="dg-section-title">Formatador de Números de Telefone</h2>
-                  <p class="dg-section-desc">
-                    Envie um CSV com coluna <code>telefone</code> ou <code>phone</code>.
-                    O app limpa, padroniza para <code>55DD9XXXXXXXX</code>
-                    e classifica como Celular ou Fixo.
-                  </p>
-
-                  <div class="dg-alert dg-alert-info mb-3">
-                    Dica: use o botão <strong>"Formatar telefones deste resultado"</strong>
-                    no módulo Separador para não precisar fazer upload novamente.
-                  </div>
-
-                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
-                    <div class="dg-file-wrap">
-                      <input type="file" id="formatadorFile" accept=".csv">
-                      <div class="dg-file-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                          <polyline points="17 8 12 3 7 8"/>
-                          <line x1="12" y1="3" x2="12" y2="15"/>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="utm" onclick="showToolsPage('utm')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                         </svg>
-                        Escolher arquivo
                       </div>
+                      <h3>Construtor de UTMs</h3>
+                      <p>Crie links com parâmetros UTM para campanhas</p>
                     </div>
-                    <span class="dg-file-name" id="formatadorFileName">Nenhum arquivo selecionado</span>
                   </div>
-
-                  <button class="btn-dg btn-dg-verde mb-3" id="btnFormatador">
-                    Formatar telefones
-                  </button>
-
-                  <div id="formatadorAlert"></div>
-
-                  <div id="formatadorResult" style="display:none;">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                      <span style="font-size:.85rem;font-weight:600;">
-                        Pré-visualização — primeiras 20 linhas
-                      </span>
-                      <button class="btn-dg btn-dg-outline" id="btnDownloadFmt">
-                        Baixar CSV formatado
-                      </button>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="whatsapp" onclick="showToolsPage('whatsapp')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                        </svg>
+                      </div>
+                      <h3>Gerador de Link WhatsApp</h3>
+                      <p>Crie links para conversa direta no WhatsApp</p>
                     </div>
-                    <div style="overflow-x:auto;">
-                      <table class="dg-table">
-                        <thead id="fmtHead"></thead>
-                        <tbody id="fmtBody"></tbody>
-                      </table>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="contadorchars" onclick="showToolsPage('contadorchars')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                          <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                      </div>
+                      <h3>Contador de Caracteres</h3>
+                      <p>Conte caracteres para meta descriptions, legendas e Ads</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="validador" onclick="showToolsPage('validador')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                          <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                      </div>
+                      <h3>Validador de URLs</h3>
+                      <p>Verifique se seus links estão ativos ou quebrados</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="qrcode" onclick="showToolsPage('qrcode')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="3" width="7" height="7"/>
+                          <rect x="14" y="3" width="7" height="7"/>
+                          <rect x="3" y="14" width="7" height="7"/>
+                          <rect x="14" y="14" width="7" height="7"/>
+                        </svg>
+                      </div>
+                      <h3>Gerador de QR Code</h3>
+                      <p>Crie QR codes que não expiram para suas campanhas</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="pdfjpg" onclick="showToolsPage('pdfjpg')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <rect x="8" y="12" width="8" height="6"/>
+                        </svg>
+                      </div>
+                      <h3>Conversor PDF ↔ IMG</h3>
+                      <p>Converta PDF para imagens e imagens para PDF</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="tool-card" data-tool="removerfundo" onclick="showToolsPage('removerfundo')">
+                      <div class="tool-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"/>
+                          <path d="M12 2a10 10 0 0 1 0 20"/>
+                        </svg>
+                      </div>
+                      <h3>Remover Fundo</h3>
+                      <p>Remova o fundo de imagens instantaneamente</p>
                     </div>
                   </div>
                 </div>
 
-              </div><!-- /tab-content -->
+                <!-- Widgets na mesma linha -->
+                <div class="row g-3">
+                  <!-- Previsão do Tempo -->
+                  <div class="col-md-4">
+                    <div class="dg-inner widget-box">
+                      <div class="widget-title">São Carlos - SP <a href="https://www.google.com/search?q=previs%C3%A3o+do+tempo+S%C3%A3o+Carlos+SP" target="_blank" class="widget-link" title="Ver previsão completa">↗</a></div>
+                      <div class="weather-loading" id="weather-loading">Carregando...</div>
+                      <div class="weather-content" id="weather-content" style="display:none;">
+                        <a href="https://www.google.com/search?q=previs%C3%A3o+do+tempo+S%C3%A3o+Carlos+SP" target="_blank" class="weather-link">
+                          <div class="weather-temp"><span id="temp">--</span>°C</div>
+                          <div class="weather-desc" id="weather-desc">--</div>
+                          <div class="weather-details">
+                            <span>Umidade: <strong id="humidity">--</strong>%</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-              <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
-                Um programa feito pelo Yank – By Dgtais.
+                  <!-- Notícias de Marketing -->
+                  <div class="col-md-8">
+                    <div class="dg-inner widget-box">
+                      <div class="widget-title">Tendências de Marketing <a href="https://news.google.com/search?q=marketing%20digital&hl=pt-BR" target="_blank" class="widget-link" title="Ver mais notícias">↗</a></div>
+                      <div class="news-loading" id="news-loading">Carregando...</div>
+                      <div class="news-content" id="news-content" style="display:none;">
+                        <div class="news-list" id="news-list"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
+                  Um programa feito pelo Yank – By Dgtais.
+                </div>
               </div>
-            </div><!-- /dg-card -->
+            </div>
           </div>
         </div>
+
+        <!-- PÁGINA DE FERRAMENTAS -->
+        <div id="tools-page" style="display: none;">
+          <div class="row justify-content-center">
+            <div class="col-lg-11">
+              <div class="dg-card">
+
+                <div class="tab-content">
+
+                  <!-- MÓDULO 1 – CONTADOR -->
+                  <div class="tab-pane" style="display:none;" id="pane-contador">
+                    <h2 class="dg-section-title">Contador de Eventos e Origens</h2>
+                    <p class="dg-section-desc">
+                      Envie uma planilha Excel com as colunas <code>eventos</code> e
+                      <code>origens</code>. O app conta quantas vezes cada um aparece.
+                    </p>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                      <div class="dg-file-wrap">
+                        <input type="file" id="contadorFile" accept=".xlsx,.xls">
+                        <div class="dg-file-btn">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                          </svg>
+                          Escolher arquivo
+                        </div>
+                      </div>
+                      <span class="dg-file-name" id="contadorFileName">Nenhum arquivo selecionado</span>
+                    </div>
+
+                    <button class="btn-dg btn-dg-verde mb-3" id="btnContador">
+                      Processar planilha
+                    </button>
+
+                    <div id="contadorAlert"></div>
+
+                    <div id="contadorResult" style="display:none;">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <div class="dg-inner">
+                            <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                              Contagem de Eventos
+                            </div>
+                            <div style="overflow-x:auto;">
+                              <table class="dg-table">
+                                <thead>
+                                  <tr><th>#</th><th>Evento</th><th style="text-align:right;">Qtd</th></tr>
+                                </thead>
+                                <tbody id="tbEventos"></tbody>
+                              </table>
+                            </div>
+                            <div class="dg-total">
+                              Total de registros: <strong id="totEventos"></strong>
+                            </div>
+                            <div class="dg-chart-box">
+                              <div class="dg-chart-label">Distribuição por Evento</div>
+                              <canvas id="chartEventos"></canvas>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="dg-inner">
+                            <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                              Contagem de Origens
+                            </div>
+                            <div style="overflow-x:auto;">
+                              <table class="dg-table">
+                                <thead>
+                                  <tr><th>#</th><th>Origem</th><th style="text-align:right;">Qtd</th></tr>
+                                </thead>
+                                <tbody id="tbOrigens"></tbody>
+                              </table>
+                            </div>
+                            <div class="dg-total">
+                              Total de registros: <strong id="totOrigens"></strong>
+                            </div>
+                            <div class="dg-chart-box">
+                              <div class="dg-chart-label">Distribuição por Origem</div>
+                              <canvas id="chartOrigens"></canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 2 – SEPARADOR -->
+                  <div class="tab-pane" style="display:none;" id="pane-separador">
+                    <h2 class="dg-section-title">Separador de Números</h2>
+                    <p class="dg-section-desc">
+                      Envie um arquivo CSV ou Excel com colunas <code>Nome ; Email ; Telefones</code>.
+                      Se houver vários números separados por <code>;</code>, cada um
+                      vira uma linha. O download mantém os acentos corretos.
+                    </p>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                      <div class="dg-file-wrap">
+                        <input type="file" id="separadorFile" accept=".csv,.xlsx,.xls">
+                        <div class="dg-file-btn">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                          </svg>
+                          Escolher arquivo
+                        </div>
+                      </div>
+                      <span class="dg-file-name" id="separadorFileName">Nenhum arquivo selecionado</span>
+                    </div>
+
+                    <button class="btn-dg btn-dg-verde mb-3" id="btnSeparador">
+                      Processar CSV
+                    </button>
+
+                    <div id="separadorAlert"></div>
+
+                    <div id="separadorResult" style="display:none;">
+                      <div class="d-flex justify-content-between align-items-center
+                                  flex-wrap gap-2 mb-2">
+                        <span style="font-size:.85rem;font-weight:600;">
+                          Pré-visualização — primeiras 20 linhas
+                        </span>
+                        <div class="d-flex gap-2 flex-wrap">
+                          <button class="btn-dg btn-dg-outline" id="btnDownloadSep">
+                            Baixar numeros_separados.csv
+                          </button>
+                          <button class="btn-dg btn-dg-verde" id="btnFormatarDaqui">
+                            Formatar telefones deste resultado
+                          </button>
+                        </div>
+                      </div>
+                      <div style="overflow-x:auto;">
+                        <table class="dg-table">
+                          <thead>
+                            <tr><th>Nome</th><th>Email</th><th>Telefone</th></tr>
+                          </thead>
+                          <tbody id="tbSeparador"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 3 – FORMATADOR -->
+                  <div class="tab-pane" style="display:none;" id="pane-formatador">
+                    <h2 class="dg-section-title">Formatador de Números de Telefone</h2>
+                    <p class="dg-section-desc">
+                      Envie um CSV ou Excel com coluna <code>telefone</code> ou <code>phone</code>.
+                      O app limpa, padroniza para <code>55DD9XXXXXXXX</code>,
+                      classifica como Celular ou Fixo, e o download mantém os acentos corretos.
+                    </p>
+
+                    <div class="dg-alert dg-alert-info mb-3">
+                      Dica: use o botão <strong>"Formatar telefones deste resultado"</strong>
+                      no módulo Separador para não precisar fazer upload novamente.
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                      <div class="dg-file-wrap">
+                        <input type="file" id="formatadorFile" accept=".csv,.xlsx,.xls">
+                        <div class="dg-file-btn">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                          </svg>
+                          Escolher arquivo
+                        </div>
+                      </div>
+                      <span class="dg-file-name" id="formatadorFileName">Nenhum arquivo selecionado</span>
+                    </div>
+
+                    <button class="btn-dg btn-dg-verde mb-3" id="btnFormatador">
+                      Formatar telefones
+                    </button>
+
+                    <div id="formatadorAlert"></div>
+
+                    <div id="formatadorResult" style="display:none;">
+                      <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                        <span style="font-size:.85rem;font-weight:600;">
+                          Pré-visualização — primeiras 20 linhas
+                        </span>
+                        <div class="d-flex gap-2 align-items-center">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="fmt-incluir-wa">
+                            <label class="form-check-label" for="fmt-incluir-wa">Incluir link WhatsApp</label>
+                          </div>
+                          <button class="btn-dg btn-dg-outline" id="btnDownloadFmt">
+                            Baixar CSV
+                          </button>
+                        </div>
+                      </div>
+                      <div style="overflow-x:auto;">
+                        <table class="dg-table">
+                          <thead id="fmtHead"></thead>
+                          <tbody id="fmtBody"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 4 – UTM BUILDER -->
+                  <div class="tab-pane" style="display:none;" id="pane-utm">
+                    <h2 class="dg-section-title">Construtor de URLs UTM</h2>
+                    <p class="dg-section-desc">
+                      Crie links com parâmetros UTM para rastrear suas campanhas no Google Analytics.
+                    </p>
+
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">URL do Site *</label>
+                            <input type="url" id="utm-url" class="form-control" placeholder="https://www.seusite.com.br">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Nome da Campanha (utm_source) *</label>
+                            <input type="text" id="utm-source" class="form-control" placeholder="google, facebook, newsletter">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Meio da Campanha (utm_medium)</label>
+                            <input type="text" id="utm-medium" class="form-control" placeholder="cpc, banner, email">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Nome da Campanha (utm_campaign)</label>
+                            <input type="text" id="utm-campaign" class="form-control" placeholder="promocao_verao">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Termo da Campanha (utm_term)</label>
+                            <input type="text" id="utm-term" class="form-control" placeholder="palavras_chave">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Conteúdo da Campanha (utm_content)</label>
+                            <input type="text" id="utm-content" class="form-control" placeholder="banner_topo, link_cta">
+                          </div>
+                          <button class="btn-dg btn-dg-verde" id="btnGerarUtm">Gerar Link UTM</button>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="dg-section-title mb-3">Link Gerado</div>
+                          <div class="utm-result-box" id="utm-result">
+                            <span class="utm-placeholder">Preencha os campos e clique em "Gerar Link UTM"</span>
+                          </div>
+                          <button class="btn-dg btn-dg-outline mt-3" id="btnCopiarUtm" style="display:none;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                            Copiar Link
+                          </button>
+                          
+                          <div class="dg-section-title mt-4 mb-3">Links Salvos</div>
+                          <div class="utm-saved-list" id="utm-saved-list">
+                            <div class="utm-empty">Nenhum link salvo ainda</div>
+                          </div>
+                          <button class="btn-dg btn-dg-outline btn-sm mt-2" id="btnLimparUtm">Limpar Histórico</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 5 – WHATSAPP LINK -->
+                  <div class="tab-pane" style="display:none;" id="pane-whatsapp">
+                    <h2 class="dg-section-title">Gerador de Link WhatsApp</h2>
+                    <p class="dg-section-desc">
+                      Crie links para iniciar conversas diretas no WhatsApp com mensagem pré-pronta.
+                    </p>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Número do WhatsApp *</label>
+                            <input type="text" id="wa-number" class="form-control" placeholder="11999999999">
+                            <small class="text-muted">Somente números com DDD</small>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Mensagem</label>
+                            <textarea id="wa-message" class="form-control" rows="4" placeholder="Olá, vim pelo site e gostaria de mais informações..."></textarea>
+                          </div>
+                          <button class="btn-dg btn-dg-verde" id="btnGerarWa">Gerar Link</button>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="dg-section-title mb-3">Link Gerado</div>
+                          <div class="utm-result-box" id="wa-result">
+                            <span class="utm-placeholder">Preencha os campos e clique em "Gerar Link"</span>
+                          </div>
+                          <button class="btn-dg btn-dg-outline mt-3" id="btnCopiarWa" style="display:none;">Copiar Link</button>
+                          <a href="#" id="wa-link-abrir" target="_blank" class="btn-dg btn-dg-verde mt-2" style="display:none;">Abrir no WhatsApp</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 6 – CONTADOR DE CARACTERES -->
+                  <div class="tab-pane" style="display:none;" id="pane-contadorchars">
+                    <h2 class="dg-section-title">Contador de Caracteres</h2>
+                    <p class="dg-section-desc">
+                      Conte caracteres e palavras para meta descriptions, legendas, títulos de Ads e mais.
+                    </p>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Texto</label>
+                            <textarea id="char-input" class="form-control" rows="8" placeholder="Digite ou cole seu texto aqui..."></textarea>
+                          </div>
+                          <button class="btn-dg btn-dg-outline" id="btnLimparChars">Limpar</button>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="dg-section-title mb-3">Estatísticas</div>
+                          <div class="char-stats">
+                            <div class="char-stat-item">
+                              <span class="char-stat-label">Caracteres:</span>
+                              <span class="char-stat-value" id="char-count">0</span>
+                            </div>
+                            <div class="char-stat-item">
+                              <span class="char-stat-label">Caracteres (sem espaços):</span>
+                              <span class="char-stat-value" id="char-count-nospace">0</span>
+                            </div>
+                            <div class="char-stat-item">
+                              <span class="char-stat-label">Palavras:</span>
+                              <span class="char-stat-value" id="word-count">0</span>
+                            </div>
+                            <div class="char-stat-item">
+                              <span class="char-stat-label">Linhas:</span>
+                              <span class="char-stat-value" id="line-count">0</span>
+                            </div>
+                          </div>
+                          
+                          <div class="dg-section-title mt-4 mb-3">Limites Comuns</div>
+                          <div class="char-limits">
+                            <div class="char-limit-item">
+                              <span>Meta Description (Google):</span>
+                              <span id="limit-meta" class="limit-badge">0/160</span>
+                            </div>
+                            <div class="char-limit-item">
+                              <span>Título Ads (Desktop):</span>
+                              <span id="limit-ads-title" class="limit-badge">0/30</span>
+                            </div>
+                            <div class="char-limit-item">
+                              <span>Descrição Ads:</span>
+                              <span id="limit-ads-desc" class="limit-badge">0/90</span>
+                            </div>
+                            <div class="char-limit-item">
+                              <span>Legenda Instagram:</span>
+                              <span id="limit-insta" class="limit-badge">0/2200</span>
+                            </div>
+                            <div class="char-limit-item">
+                              <span>Bio Instagram:</span>
+                              <span id="limit-bio" class="limit-badge">0/150</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 7 – VALIDADOR DE URLs -->
+                  <div class="tab-pane" style="display:none;" id="pane-urls">
+                    <h2 class="dg-section-title">Validador de URLs</h2>
+                    <p class="dg-section-desc">
+                      Verifique se suas URLs estão ativas ou quebradas. Uma por linha.
+                    </p>
+                    <div class="dg-inner mb-3">
+                      <label class="form-label fw-bold">URLs (uma por linha)</label>
+                      <textarea id="url-input" class="form-control" rows="6" placeholder="https://www.exemplo.com&#10;https://www.outro.com"></textarea>
+                    </div>
+                    <button class="btn-dg btn-dg-verde" id="btnValidarUrls">Validar URLs</button>
+                    <button class="btn-dg btn-dg-outline" id="btnLimparUrls">Limpar</button>
+                    
+                    <div id="url-results" class="mt-4" style="display:none;">
+                      <div class="dg-inner">
+                        <div class="dg-section-title mb-3">Resultados</div>
+                        <div class="url-summary mb-3">
+                          <span class="url-ok-badge" id="url-ok-count">0 OK</span>
+                          <span class="url-error-badge" id="url-error-count">0 Erros</span>
+                          <span class="url-total-badge" id="url-total-count">Total: 0</span>
+                        </div>
+                        <div style="overflow-x:auto;">
+                          <table class="dg-table">
+                            <thead>
+                              <tr><th>Status</th><th>URL</th><th>Código</th></tr>
+                            </thead>
+                            <tbody id="url-tbody"></tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- MÓDULO 8 – QR CODE -->
+                  <div class="tab-pane" style="display:none;" id="pane-qrcode">
+                    <h2 class="dg-section-title">Gerador de QR Code</h2>
+                    <p class="dg-section-desc">
+                      Crie QR codes que não expiram para suas campanhas e materiais.
+                    </p>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Conteúdo do QR Code *</label>
+                            <textarea id="qr-content" class="form-control" rows="4" placeholder="URL, texto, WhatsApp link, etc."></textarea>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Tamanho</label>
+                            <select id="qr-size" class="form-control">
+                              <option value="100">Extra Pequeno (100px)</option>
+                              <option value="150">Pequeno (150px)</option>
+                              <option value="200">Médio (200px)</option>
+                              <option value="300" selected>Grande (300px)</option>
+                              <option value="400">Extra Grande (400px)</option>
+                              <option value="500">Gigante (500px)</option>
+                              <option value="600">Mega (600px)</option>
+                              <option value="800">Ultra (800px)</option>
+                              <option value="1000">Máximo (1000px)</option>
+                            </select>
+                          </div>
+                          <button class="btn-dg btn-dg-verde" id="btnGerarQr">Gerar QR Code</button>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="dg-inner text-center">
+                          <div class="dg-section-title mb-3">QR Code Gerado</div>
+                          <div id="qr-result" class="qr-result-box">
+                            <span class="utm-placeholder">Preencha e clique em "Gerar QR Code"</span>
+                          </div>
+                          <button class="btn-dg btn-dg-outline mt-3" id="btnDownloadQr" style="display:none;">Baixar QR Code</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PDF ↔ IMG -->
+                  <div class="tab-pane" style="display:none;" id="pane-pdfjpg">
+                    <h2 class="dg-section-title">Conversor PDF ↔ IMG</h2>
+                    <p class="dg-section-desc">
+                      Converta PDF para imagens (JPG/PNG) ou imagens para PDF. 
+                      Todo processamento é feito no navegador.
+                    </p>
+                    
+                    <ul class="nav nav-tabs mb-3" id="pdf-tabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pdf-to-img" type="button">PDF → Imagem</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#img-to-pdf" type="button">Imagem → PDF</button>
+                      </li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                      <div class="tab-pane fade show active" id="pdf-to-img">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Selecione o arquivo PDF</label>
+                            <input type="file" id="pdf-to-img-file" accept=".pdf" class="form-control">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Formato de saída</label>
+                            <select id="pdf-to-img-format" class="form-control">
+                              <option value="image/jpeg">JPG</option>
+                              <option value="image/png">PNG</option>
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Qualidade</label>
+                            <select id="pdf-to-img-quality" class="form-control">
+                              <option value="1.0">Alta</option>
+                              <option value="1.5" selected>Média</option>
+                              <option value="2.0">Baixa</option>
+                            </select>
+                          </div>
+                          <button class="btn-dg btn-dg-verde" id="btnPdfToImg">Converter PDF para Imagem</button>
+                          <div id="pdf-to-img-result" class="mt-3"></div>
+                        </div>
+                      </div>
+                      
+                      <div class="tab-pane fade" id="img-to-pdf">
+                        <div class="dg-inner">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold">Selecione as imagens</label>
+                            <input type="file" id="img-to-pdf-files" accept="image/*" multiple class="form-control">
+                          </div>
+                          <button class="btn-dg btn-dg-verde" id="btnImgToPdf">Converter Imagens para PDF</button>
+                          <div id="img-to-pdf-result" class="mt-3"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- REMOVER FUNDO -->
+                  <div class="tab-pane" style="display:none;" id="pane-removerfundo">
+                    <h2 class="dg-section-title">Remover Fundo de Imagem</h2>
+                    <p class="dg-section-desc">
+                      Remova o fundo de imagens usando IA. Suas imagens são processadas 
+                      localmente no navegador - nada é enviado para servidores externos.
+                    </p>
+                    
+                    <div class="dg-inner">
+                      <div class="mb-3">
+                        <label class="form-label fw-bold">Selecione uma imagem</label>
+                        <input type="file" id="remover-fundo-file" accept="image/*" class="form-control">
+                      </div>
+                      <button class="btn-dg btn-dg-verde" id="btnRemoverFundo">Remover Fundo</button>
+                      <div id="remover-fundo-loading" class="mt-3" style="display:none;">Processando... isso pode levar alguns segundos.</div>
+                      <div id="remover-fundo-result" class="mt-3 text-center"></div>
+                    </div>
+                  </div>
+
+                </div><!-- /tab-content -->
+
+                <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
+                  Um programa feito pelo Yank – By Dgtais.
+                </div>
+              </div><!-- /dg-card -->
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
 
@@ -311,7 +857,25 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <!-- QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
+  <!-- App principal -->
   <script src="app.js"></script>
+  <!-- Ferramentas -->
+  <script src="js/tools/contador.js"></script>
+  <script src="js/tools/separador.js"></script>
+  <script src="js/tools/formatador.js"></script>
+  <script src="js/tools/utm.js"></script>
+  <script src="js/tools/whatsapp.js"></script>
+  <script src="js/tools/contadorchars.js"></script>
+  <script src="js/tools/validadorurls.js"></script>
+  <script src="js/tools/qrcode.js"></script>
+  <script src="js/tools/pdfjpg.js"></script>
+  <script src="js/tools/removerfundo.js"></script>
 </body>
 </html>

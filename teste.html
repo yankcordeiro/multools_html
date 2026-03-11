@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ferramentas Dgtais - Teste</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div id="login-screen" class="login-container">
+    <div class="login-box">
+      <div class="login-logo">
+        <img src="logo.png" alt="Logo" class="dg-logo">
+      </div>
+      <h1 class="login-title">Ferramentas Dgtais</h1>
+      <p class="login-subtitle">Acesso restrito - Marketing</p>
+      
+      <form id="login-form">
+        <div class="mb-3">
+          <input type="text" id="login-user" class="form-control" placeholder="Usuário" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" id="login-pass" class="form-control" placeholder="Senha" required>
+        </div>
+        <div id="login-error" class="login-error"></div>
+        <button type="submit" class="btn-dg btn-dg-verde w-100">Entrar</button>
+      </form>
+      <p class="login-footer">By Dgtais - Yank Cordeiro</p>
+    </div>
+  </div>
+
+  <!-- ÁREA PRINCIPAL (oculta até login) -->
+  <div id="main-app" style="display: none;">
+
+    <!-- HEADER -->
+    <header class="dg-header">
+      <div class="container">
+        <div class="row align-items-center g-3">
+          <div class="col-auto">
+            <img src="logo.png" alt="Logo" class="dg-logo">
+          </div>
+          <div class="col">
+            <div class="dg-header-title">Ferramentas Dgtais</div>
+            <div class="dg-header-sub">Contador de eventos · Separador · Formatador de contatos</div>
+          </div>
+          <div class="col-auto">
+            <button class="btn-dg btn-dg-outline btn-sm" id="btn-logout">Sair</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dg-main">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-11">
+            <div class="dg-card">
+
+              <!-- TABS -->
+              <ul class="nav nav-pills mb-4" id="tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-bs-toggle="pill"
+                    data-bs-target="#pane-contador" type="button" id="tab-contador">
+                    Contador de Eventos / Origens
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="pill"
+                    data-bs-target="#pane-separador" type="button" id="tab-separador">
+                    Separador de Números CSV
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" data-bs-toggle="pill"
+                    data-bs-target="#pane-formatador" type="button" id="tab-formatador">
+                    Formatador de Telefones
+                  </button>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+
+                <!-- MÓDULO 1 – CONTADOR -->
+                <div class="tab-pane fade show active" id="pane-contador">
+                  <h2 class="dg-section-title">Contador de Eventos e Origens</h2>
+                  <p class="dg-section-desc">
+                    Envie uma planilha Excel com as colunas <code>eventos</code> e
+                    <code>origens</code>. O app conta quantas vezes cada um aparece.
+                  </p>
+
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="contadorFile" accept=".xlsx,.xls">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="contadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
+
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnContador">
+                    Processar planilha
+                  </button>
+
+                  <div id="contadorAlert"></div>
+
+                  <div id="contadorResult" style="display:none;">
+                    <div class="row g-3">
+
+                      <!-- Eventos -->
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                            Contagem de Eventos
+                          </div>
+                          <div style="overflow-x:auto;">
+                            <table class="dg-table">
+                              <thead>
+                                <tr><th>#</th><th>Evento</th><th style="text-align:right;">Qtd</th></tr>
+                              </thead>
+                              <tbody id="tbEventos"></tbody>
+                            </table>
+                          </div>
+                          <div class="dg-total">
+                            Total de registros: <strong id="totEventos"></strong>
+                          </div>
+                          <div class="dg-chart-box">
+                            <div class="dg-chart-label">Distribuição por Evento</div>
+                            <canvas id="chartEventos"></canvas>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Origens -->
+                      <div class="col-md-6">
+                        <div class="dg-inner">
+                          <div style="font-weight:700;font-size:.88rem;margin-bottom:.6rem;">
+                            Contagem de Origens
+                          </div>
+                          <div style="overflow-x:auto;">
+                            <table class="dg-table">
+                              <thead>
+                                <tr><th>#</th><th>Origem</th><th style="text-align:right;">Qtd</th></tr>
+                              </thead>
+                              <tbody id="tbOrigens"></tbody>
+                            </table>
+                          </div>
+                          <div class="dg-total">
+                            Total de registros: <strong id="totOrigens"></strong>
+                          </div>
+                          <div class="dg-chart-box">
+                            <div class="dg-chart-label">Distribuição por Origem</div>
+                            <canvas id="chartOrigens"></canvas>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- MÓDULO 2 – SEPARADOR -->
+                <div class="tab-pane fade" id="pane-separador">
+                  <h2 class="dg-section-title">Separador de Números CSV</h2>
+                  <p class="dg-section-desc">
+                    Envie um CSV com colunas <code>Nome ; Email ; Telefones</code>.
+                    Se houver vários números separados por <code>;</code>, cada um
+                    vira uma linha. Saída sempre como <code>numeros_separados.csv</code>.
+                  </p>
+
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="separadorFile" accept=".csv">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="separadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
+
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnSeparador">
+                    Processar CSV
+                  </button>
+
+                  <div id="separadorAlert"></div>
+
+                  <div id="separadorResult" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center
+                                flex-wrap gap-2 mb-2">
+                      <span style="font-size:.85rem;font-weight:600;">
+                        Pré-visualização — primeiras 20 linhas
+                      </span>
+                      <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn-dg btn-dg-outline" id="btnDownloadSep">
+                          Baixar numeros_separados.csv
+                        </button>
+                        <button class="btn-dg btn-dg-verde" id="btnFormatarDaqui">
+                          Formatar telefones deste resultado
+                        </button>
+                      </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                      <table class="dg-table">
+                        <thead>
+                          <tr><th>Nome</th><th>Email</th><th>Telefone</th></tr>
+                        </thead>
+                        <tbody id="tbSeparador"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- MÓDULO 3 – FORMATADOR -->
+                <div class="tab-pane fade" id="pane-formatador">
+                  <h2 class="dg-section-title">Formatador de Números de Telefone</h2>
+                  <p class="dg-section-desc">
+                    Envie um CSV com coluna <code>telefone</code> ou <code>phone</code>.
+                    O app limpa, padroniza para <code>55DD9XXXXXXXX</code>
+                    e classifica como Celular ou Fixo.
+                  </p>
+
+                  <div class="dg-alert dg-alert-info mb-3">
+                    Dica: use o botão <strong>"Formatar telefones deste resultado"</strong>
+                    no módulo Separador para não precisar fazer upload novamente.
+                  </div>
+
+                  <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+                    <div class="dg-file-wrap">
+                      <input type="file" id="formatadorFile" accept=".csv">
+                      <div class="dg-file-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="17 8 12 3 7 8"/>
+                          <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Escolher arquivo
+                      </div>
+                    </div>
+                    <span class="dg-file-name" id="formatadorFileName">Nenhum arquivo selecionado</span>
+                  </div>
+
+                  <button class="btn-dg btn-dg-verde mb-3" id="btnFormatador">
+                    Formatar telefones
+                  </button>
+
+                  <div id="formatadorAlert"></div>
+
+                  <div id="formatadorResult" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span style="font-size:.85rem;font-weight:600;">
+                        Pré-visualização — primeiras 20 linhas
+                      </span>
+                      <button class="btn-dg btn-dg-outline" id="btnDownloadFmt">
+                        Baixar CSV formatado
+                      </button>
+                    </div>
+                    <div style="overflow-x:auto;">
+                      <table class="dg-table">
+                        <thead id="fmtHead"></thead>
+                        <tbody id="fmtBody"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /tab-content -->
+
+              <div style="margin-top:1.8rem;font-size:.72rem;color:var(--txt-fraco);">
+                Um programa feito pelo Yank – By Dgtais.
+              </div>
+            </div><!-- /dg-card -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="dg-footer">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span><span class="brand">Dgtais</span> – Yank Cordeiro – Marketing Digital</span>
+        <span>Ferramentas que facilitam o trabalho no Marketing</span>
+      </div>
+    </footer>
+
+  </div><!-- /main-app -->
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  
+  <script src="app.js"></script>
+</body>
+</html>
